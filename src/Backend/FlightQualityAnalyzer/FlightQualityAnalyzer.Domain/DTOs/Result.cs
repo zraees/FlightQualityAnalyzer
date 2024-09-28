@@ -28,12 +28,12 @@ public class Result<T>
     /// </summary>
     /// <param name="value"></param>
     /// <returns></returns>
-    public static Result<T> Success(T value) => new Result<T>(value, string.Empty, true);
+    public static Result<T> Success(T value) => new(value, string.Empty, true);
 
     /// <summary>
     /// implicitly convert failure into Result-Obj with error details.
     /// </summary>
     /// <param name="error"></param>
     /// <returns></returns>
-    public static Result<T> Failure(string error) => new Result<T>(default!, error, false);
+    public static Result<T> Failure(string error) => new(default!, error, false);
 }

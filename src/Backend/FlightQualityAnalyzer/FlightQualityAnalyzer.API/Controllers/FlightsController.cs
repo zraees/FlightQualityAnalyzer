@@ -19,6 +19,8 @@ public class FlightsController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Get()
     {
+        //throw new Exception("This is a test exception!");
+
         var flights = await _flightService.GetAllAsync().ConfigureAwait(false);
 
         return Ok(flights.Value);
