@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FlightQualityAnalyzer.Domain\FlightQualityAnalyzer.Domain.csproj" />
+    <ProjectReference Include="..\FlightQualityAnalyzer.Infrastructure\FlightQualityAnalyzer.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
