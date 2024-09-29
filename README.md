@@ -2,6 +2,11 @@
 
 ## Overview
 The Flight Quality Analyzer is a .NET 8 application designed to automate the analysis of airline flight data quality. It provides RESTful APIs to retrieve flight records from a CSV file and analyze flight chains for inconsistencies.
+### some best practices are:
+1. Use Onion Architecture, to make application loosly coupled, easy to maintenane and testable.
+2. use editorconfig, to implement coding style and standards
+3. use some design patterns such as repository, option and result patterns.
+   
 
 ## Setup Instructions
 1. Clone the repository.
