@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightQualityAnalyzer.Domai
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightQualityAnalyzer.Infrastructure", "FlightQualityAnalyzer.Infrastructure\FlightQualityAnalyzer.Infrastructure.csproj", "{FCD18E4F-EBD4-436D-AC0E-CE6037AE910F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightQualityAnalyzer.Service", "FlightQualityAnalyzer.Service\FlightQualityAnalyzer.Service.csproj", "{A9DB5557-E5D7-4B5A-9873-1066D4CA306E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightQualityAnalyzer.Service", "FlightQualityAnalyzer.Service\FlightQualityAnalyzer.Service.csproj", "{A9DB5557-E5D7-4B5A-9873-1066D4CA306E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightQualityAnalyzer.API", "FlightQualityAnalyzer.API\FlightQualityAnalyzer.API.csproj", "{C5989A11-2195-4583-B4DF-E41D9063D505}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightQualityAnalyzer.API", "FlightQualityAnalyzer.API\FlightQualityAnalyzer.API.csproj", "{C5989A11-2195-4583-B4DF-E41D9063D505}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightQualityAnalyzer.Tests", "FlightQualityAnalyzer.Tests\FlightQualityAnalyzer.Tests.csproj", "{27979831-312E-4D35-BCFC-FCE02BB86097}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{C5989A11-2195-4583-B4DF-E41D9063D505}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5989A11-2195-4583-B4DF-E41D9063D505}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5989A11-2195-4583-B4DF-E41D9063D505}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27979831-312E-4D35-BCFC-FCE02BB86097}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27979831-312E-4D35-BCFC-FCE02BB86097}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27979831-312E-4D35-BCFC-FCE02BB86097}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27979831-312E-4D35-BCFC-FCE02BB86097}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -45,7 +45,7 @@ public class FlightsController : ControllerBase
     public async Task<IActionResult> GetInconsistentFlights()
     {
         // get all inconsistencies through injected-service
-        var inconsistentFlights = await _flightService.GetInconsistentFlightChains().ConfigureAwait(false);
+        var inconsistentFlights = await _flightService.GetInconsistentFlightChainsAsync().ConfigureAwait(false);
 
         // if return with sucess, show inconsistencies data to client other wise badreqeust with error message.
         if (inconsistentFlights.IsSuccess)

@@ -54,7 +54,7 @@ public class FlightService : IFlightService
     /// If the next flight does not exist based on these conditions, it indicates an inconsistency.
     /// </summary>
     /// <returns>discrepencies in flight chains with note, in result object</returns>
-    public async Task<Result<IEnumerable<FlightChainAnalysis>>> GetInconsistentFlightChains()
+    public async Task<Result<IEnumerable<FlightChainAnalysis>>> GetInconsistentFlightChainsAsync()
     {
         var flightResult = await GetAllAsync().ConfigureAwait(false);
         List<FlightChainAnalysis> inconsistentFlights = [];
