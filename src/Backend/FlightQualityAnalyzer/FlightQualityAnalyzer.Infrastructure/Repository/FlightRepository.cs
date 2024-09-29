@@ -29,7 +29,7 @@ public class FlightRepository : IFlightRepository
     /// This function is called asynchronously, parses each row and adds the flight to a collection. Finally, it returns the collection of flights,
     /// throwing an exception if any row encounters a parsing issue.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>result object, with success or failure with data.</returns>
     public async Task<Result<IEnumerable<Flight>>> GetAllAsync()
     {
         // read all data rows from csv file.
@@ -41,7 +41,7 @@ public class FlightRepository : IFlightRepository
             // split csv row based on delimiter (comma in our case)
             var rowValues = row.Split(_options.Value.CsvDelimiter ?? ",");
 
-            // this try catch to handle any unexpected error because of data.
+            // this try catch to handle any error because of data parsing.
             try
             {
                 var flight = new Flight

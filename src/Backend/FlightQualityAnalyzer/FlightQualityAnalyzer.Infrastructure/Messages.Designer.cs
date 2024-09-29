@@ -29,7 +29,7 @@ namespace FlightQualityAnalyzer.Infrastructure {
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Messages() {
+        public Messages() {
         }
         
         /// <summary>
@@ -84,6 +84,15 @@ namespace FlightQualityAnalyzer.Infrastructure {
         public static string FileNotFound {
             get {
                 return ResourceManager.GetString("FileNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is no next flight in the chain from {0} back to {1} after the arrival time of {2}..
+        /// </summary>
+        public static string InconsistentFlightChainFound {
+            get {
+                return ResourceManager.GetString("InconsistentFlightChainFound", resourceCulture);
             }
         }
         

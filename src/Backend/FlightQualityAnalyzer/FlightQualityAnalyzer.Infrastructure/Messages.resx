@@ -126,6 +126,9 @@
   <data name="FileNotFound" xml:space="preserve">
     <value>The specified CSV file was not found.</value>
   </data>
+  <data name="InconsistentFlightChainFound" xml:space="preserve">
+    <value>There is no next flight in the chain from {0} back to {1} after the arrival time of {2}.</value>
+  </data>
   <data name="ParsingError" xml:space="preserve">
     <value>Error parsing flight data: {0}</value>
   </data>

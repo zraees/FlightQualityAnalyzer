@@ -5,7 +5,7 @@ namespace FlightQualityAnalyzer.Domain.DTOs;
 
 /// <summary>
 /// Result pattern is used to standard return value, with either success or failure.
-/// In this project I used custom result pattern, we can use FluentResult package also.
+/// a custom result pattern is used in this project, we can use FluentResult package also.
 /// </summary>
 /// <typeparam name="T"></typeparam>
 public class Result<T>
@@ -14,13 +14,13 @@ public class Result<T>
 
     public string Error { get; set; } = string.Empty;
 
-    public bool IsSucess { get; set; }
+    public bool IsSuccess { get; set; }
 
     private Result(T value, string error, bool isSucess)
     {
         Value = value;
         Error = error;
-        IsSucess = isSucess;
+        IsSuccess = isSucess;
     }
 
     /// <summary>

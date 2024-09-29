@@ -9,5 +9,5 @@ public interface IFlightService
 {
     Task<Result<IEnumerable<Flight>>> GetAllAsync();
 
-    Task<Result<IEnumerable<FlightChainAnalysis>>> ApplyFlightChainAnalysis();
+    Task<Result<IEnumerable<FlightChainAnalysis>>> GetInconsistentFlightChains();
 }

@@ -1,6 +1,6 @@
 @FlightQualityAnalyzer.API_HostAddress = http://localhost:5207
 
-GET {{FlightQualityAnalyzer.API_HostAddress}}/weatherforecast/
+GET {{FlightQualityAnalyzer.API_HostAddress}}/flights/
 Accept: application/json
 
 ###

@@ -4,9 +4,9 @@
 using FlightQualityAnalyzer.Domain.Entities;
 
 namespace FlightQualityAnalyzer.Domain.DTOs;
-public class FlightChainAnalysis
+public record FlightChainAnalysis
 {
-    public required Flight Flight { get; set; }
-
     public string Notes { get; set; } = string.Empty;
+
+    public Flight Flight { get; set; }
 }
