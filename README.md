@@ -6,7 +6,8 @@ The Flight Quality Analyzer is a .NET 8 application designed to automate the ana
 1. Use Onion Architecture, to make application loosly coupled, easy to maintenane and testable.
 2. use editorconfig, to implement coding style and standards
 3. use some design patterns such as repository, option and result patterns.
-   
+4. logging through serilog and save logs in file system.
+5. use global exception handling, that introduced in .net core 8   
 
 ## Setup Instructions
 1. Clone the repository.
