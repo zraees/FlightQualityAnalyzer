@@ -25,7 +25,7 @@ public class FlightService : IFlightService
     /// This function is called asynchronously. It first checks whether the CSV file exists on server,
     /// then call repository func to bring all flights from csv file.
     /// </summary>
-    /// <returns>flight collection from csv</returns>
+    /// <returns>flight collection from csv, in result object</returns>
     public async Task<Result<IEnumerable<Flight>>> GetAllAsync()
     {
         // early return to enhance code readability
@@ -53,7 +53,7 @@ public class FlightService : IFlightService
     /// Finally, I checked the last condition to ensure that the next flight departs after the arrival time of the current flight.
     /// If the next flight does not exist based on these conditions, it indicates an inconsistency.
     /// </summary>
-    /// <returns>discrepencies in flight chains with note</returns>
+    /// <returns>discrepencies in flight chains with note, in result object</returns>
     public async Task<Result<IEnumerable<FlightChainAnalysis>>> GetInconsistentFlightChains()
     {
         var flightResult = await GetAllAsync().ConfigureAwait(false);
