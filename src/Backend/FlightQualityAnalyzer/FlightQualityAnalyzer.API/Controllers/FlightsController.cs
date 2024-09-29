@@ -20,7 +20,7 @@ public class FlightsController : ControllerBase
     }
 
     /// <summary>
-    /// first endpoint: to bring all flights data from csv and return to client in json
+    /// first endpoint: to bring all flights data from csv and return to client in json format
     /// </summary>
     /// <returns></returns>
     [HttpGet("GetAllFlights")]
