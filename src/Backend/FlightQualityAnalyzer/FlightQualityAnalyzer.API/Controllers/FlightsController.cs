@@ -1,6 +1,7 @@
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 
+using FlightQualityAnalyzer.Domain.Entities;
 using FlightQualityAnalyzer.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,10 +11,12 @@ namespace FlightQualityAnalyzer.API.Controllers;
 public class FlightsController : ControllerBase
 {
     private readonly IFlightService _flightService;
+    private readonly ILogger<FlightsController> _logger;
 
-    public FlightsController(IFlightService flightService)
+    public FlightsController(IFlightService flightService, ILogger<FlightsController> logger)
     {
         _flightService = flightService;
+        _logger = logger;
     }
 
     /// <summary>
@@ -33,6 +36,7 @@ public class FlightsController : ControllerBase
         }
         else
         {
+            _logger.LogError(flights.Error);
             return BadRequest(flights.Error);
         }
     }
@@ -54,6 +58,7 @@ public class FlightsController : ControllerBase
         }
         else
         {
+            _logger.LogError(inconsistentFlights.Error);
             return BadRequest(inconsistentFlights.Error);
         }
     }

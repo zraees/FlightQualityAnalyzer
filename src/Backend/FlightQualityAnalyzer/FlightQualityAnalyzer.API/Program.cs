@@ -6,6 +6,7 @@ using FlightQualityAnalyzer.Domain.DTOs;
 using FlightQualityAnalyzer.Domain.Interfaces;
 using FlightQualityAnalyzer.Infrastructure.Repository;
 using FlightQualityAnalyzer.Service;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,14 @@ builder.Services.AddScoped<IFlightService, FlightService>();
 // these two lines to configure Global exception handler and problem detail
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
+
+// Configure Serilog
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .CreateLogger();
+
+// Configure the host to use Serilog for logging
+builder.Host.UseSerilog(); 
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
