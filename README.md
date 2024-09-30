@@ -5,12 +5,21 @@ The Flight Quality Analyzer is a .NET 8 application (developed using Visual Stud
 
 ### Some best practices used:
 1. Utilize Onion Architecture to create an application that is loosely coupled, easy to maintain, and highly testable.
-2. Use EditorConfig to enforce coding styles and standards.  
-3. Implement design patterns, such as the Repository, Option, and Result patterns.
-4. Added unit tests to ensure the application is tested whenever changes are made to the code, just run the tests again.  
-5. Utilize Serilog for logging and save logs to the file system. (Note: This feature is included to demonstrate logging, but is not fully implemented in the application.) 
-6. Implement global exception handling introduced in .NET Core 8.  
-
+2. Asynchronous data processing using `async` and `await`.  
+4. Implement design patterns, such as the Repository, Option, and Result patterns.
+5. Repository Pattern for data access and encapsulation and Result Pattern for structured success and error handling.
+6. Unit tests with xUnit to ensure code quality.
+3. Use EditorConfig to enforce coding styles and standards.
+7. Utilize Serilog for logging and save logs to the file system. (Note: This feature is included to demonstrate logging, but is not fully implemented in the application.) 
+8. Implement global exception handling introduced in .NET Core 8.
+     
+## Technologies used:
+- .NET 8.0
+- C#
+- xUnit for unit testing
+- Moq for mocking dependencies
+- ASP.NET Core for building the API
+  
 ## How to run code locally
 1. Clone the repository or download zip.
 2. Navigate to the project directory.
