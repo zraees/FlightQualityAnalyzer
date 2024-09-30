@@ -25,7 +25,7 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 // Configure the host to use Serilog for logging
-builder.Host.UseSerilog(); 
+builder.Host.UseSerilog();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
