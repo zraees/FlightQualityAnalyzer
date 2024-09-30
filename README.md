@@ -1,7 +1,7 @@
 # Flight Quality Analyzer
 
 ## Overview
-The Flight Quality Analyzer is a .NET 8 application (developed on vs 2022) designed to automate the analysis of flight data quality. It provides RESTful APIs to retrieve flight records from a CSV file and analyze flight chains for inconsistencies. 
+The Flight Quality Analyzer is a .NET 8 application (developed using Visual Studio 2022) designed to automate the analysis of flight data quality. It provides RESTful APIs to retrieve flight records from a CSV file and analyze flight chains for inconsistencies. 
 
 ### some best practices used:
 1. Utilize Onion Architecture to create an application that is loosely coupled, easy to maintain, and highly testable.
