@@ -1,5 +1,0 @@
-[config]
-command = deploy.cmd
-
-[deploy]
-source = src/Backend/FlightQualityAnalyzer/FlightQualityAnalyzer.API
