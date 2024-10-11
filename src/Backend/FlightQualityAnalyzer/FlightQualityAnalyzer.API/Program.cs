@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 
 using FlightQualityAnalyzer.API.Middlewares;
-using FlightQualityAnalyzer.Domain.DTOs;
+using FlightQualityAnalyzer.Domain.Entities;
 using FlightQualityAnalyzer.Domain.Interfaces;
 using FlightQualityAnalyzer.Infrastructure.Repository;
 using FlightQualityAnalyzer.Service;

@@ -47,50 +47,49 @@ public class FlightService : IFlightService
 
     /// <summary>
     /// this function to analyse flight chains.
-    /// First, the flight list was sorted in ascending order based on departure time.
-    /// then, I checked the first condition to ensure that the departure airport of the next flight matches the arrival airport of the current flight.
-    /// then, I checked the second condition to ensure that the arrival airport of the next flight matches the departure airport of the current flight.
-    /// Finally, I checked the last condition to ensure that the next flight departs after the arrival time of the current flight.
-    /// If the next flight does not exist based on these conditions, it indicates an inconsistency.
+    /// considering that
+    /// 1- flights are grouped by aircraft registration number and 
+    /// 2- sort in asc these grouped flights by departure datetime
+    /// 3- check in sequential manner for inconsistency in a flight by checking 
+    /// 3.1- if the upcoming flight's departure airport does not match the active flight's arrival airport
     /// </summary>
     /// <returns>discrepencies in flight chains with note, in result object</returns>
     public async Task<Result<IEnumerable<FlightChainAnalysis>>> GetInconsistentFlightChainsAsync()
     {
         var flightResult = await GetAllAsync().ConfigureAwait(false);
-        List<FlightChainAnalysis> inconsistentFlights = [];
 
         // early return: no flights mean no inconsistencies, so return empty with notes
         if (flightResult.IsSuccess == false)
         {
-            return Result<IEnumerable<FlightChainAnalysis>>.Success(inconsistentFlights);
+            return Result<IEnumerable<FlightChainAnalysis>>.Success([]);
         }
 
-        var flights = flightResult.Value.OrderBy(x => x.DepartureDatetime);
-        var lastFlightId = flights.LastOrDefault()?.Id ?? 0;
+        // Group flights by aircraft registration number
+        var flightsGroupedByRegNo = flightResult.Value.GroupBy(f => f.AircraftRegistrationNumber);
+        List<FlightChainAnalysis> inconsistentFlights = [];
 
-        // now iterating all flights to findout discrepencies
-        foreach (var flight in flights)
+        // iterate each group of flights per AircraftRegNo
+        foreach (var group in flightsGroupedByRegNo)
         {
-            // There is no need to check the last flight, so I will skip it.
-            if (flight.Id == lastFlightId)
-            {
-                continue;
-            }
+            // Ascending flights by departure_datetime for the selected/choosen aircraft 
+            var flightsOrderByDepartureTime = group.OrderBy(f => f.DepartureDatetime).ToList();
 
-            // getting next-departure-airport of the current flight, also added ArrivalDatetime check to move forward no need to search from start.
-            var nextDepartureAirport = flights.FirstOrDefault(x => x.DepartureAirport == flight.ArrivalAirport
-                                                                && x.ArrivalAirport == flight.DepartureAirport
-                                                                && x.DepartureDatetime >= flight.ArrivalDatetime);
-
-            // next-flight not found, so add into inconsistentFlightList
-            if (nextDepartureAirport == null)
+            // loop on the sorted flights and trying to find the inconsistent flight chains
+            for (int i = 0; i < flightsOrderByDepartureTime.Count - 1; i++)
             {
-                inconsistentFlights.Add(new FlightChainAnalysis
+                var activeFlight = flightsOrderByDepartureTime[i];
+                var upcomingFlight = flightsOrderByDepartureTime[i + 1];
+
+                // checking if 'arrival airport' of the 'active flight' not matches the 'departure airport' of the 'upcoming flight'
+                if (activeFlight.ArrivalAirport != upcomingFlight.DepartureAirport)
                 {
-                    Flight = flight,
-                    Notes = string.Format(CultureInfo.InvariantCulture, Messages.InconsistentFlightChainFound,
-                                            flight.ArrivalAirport, flight.DepartureAirport, flight.ArrivalDatetime)
-                });
+                    inconsistentFlights.Add(new FlightChainAnalysis
+                    {
+                        Flight = activeFlight,
+                        Notes = string.Format(CultureInfo.InvariantCulture, Messages.InconsistentFlightChainFound,
+                                                             activeFlight.ArrivalAirport, activeFlight.DepartureAirport, activeFlight.ArrivalDatetime)
+                    });
+                }
             }
         }
 
