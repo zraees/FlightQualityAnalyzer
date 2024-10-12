@@ -3,6 +3,21 @@
 ## Overview
 The Flight Quality Analyzer is a .NET 8 application (developed using Visual Studio 2022) designed to automate the analysis of flight data quality. It provides RESTful APIs to retrieve flight records from a CSV file and analyze flight chains for inconsistencies. 
 
+### Key Enhancements (based on feedback)
+1. **CSV Parsing**: Utilized the `CsvParser` library for efficient CSV parsing.
+2. **Business Logic Revamped**: Revised the logic to identify inconsistencies in flight chains.
+3. **Integration Testing**: Added a new project, FlightQualityAnalyzer.IntegrationTests, and implemented integration tests using xUnit, Microsoft.AspNetCore.Mvc.Testing, and FluentAssertions. FluentAssertions is a .NET library that makes it easier to write clear and expressive assertions in tests.
+4. **Unit Tests**: Included CSV files in unit tests for comprehensive testing.
+
+## Room for Enhancement
+There are several areas in the project that can be improved:
+1. Boost code coverage with more unit and integration tests.
+2. Implement JWT authentication and introduce API versioning.
+3. **Rate Limiting**: Implement rate limiting to protect the API from excessive requests.
+4. **Documentation**: Enhance API documentation using Swagger comments for better developer experience.
+5. **Caching**: Implement caching strategies for frequently accessed data to improve performance.
+6. **Monitoring and Metrics**: Integrate monitoring tools (e.g., Application Insights) to track performance and usage metrics.
+
 ### Some best practices used:
 1. Utilize Onion Architecture to create an application that is loosely coupled, easy to maintain, and highly testable.
 2. Asynchronous data processing using `async` and `await`.  
@@ -16,7 +31,7 @@ The Flight Quality Analyzer is a .NET 8 application (developed using Visual Stud
 ## Technologies used:
 - .NET 8.0
 - C#
-- xUnit for unit testing
+- xUnit for unit testing & integration test
 - Moq for mocking dependencies
 - ASP.NET Core for building the API
   
