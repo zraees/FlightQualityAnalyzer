@@ -23,7 +23,7 @@ public class FlightsController : ControllerBase
     /// </summary>
     /// <returns></returns>
     [HttpGet("GetAllFlights")]
-    public async Task<IActionResult> Get()
+    public async Task<IActionResult> GetAllFlights()
     {
         // get all flights through injected-service
         var flights = await _flightService.GetAllAsync().ConfigureAwait(false);

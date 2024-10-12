@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightQualityAnalyzer.Servi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightQualityAnalyzer.API", "FlightQualityAnalyzer.API\FlightQualityAnalyzer.API.csproj", "{C5989A11-2195-4583-B4DF-E41D9063D505}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightQualityAnalyzer.Tests", "FlightQualityAnalyzer.Tests\FlightQualityAnalyzer.Tests.csproj", "{27979831-312E-4D35-BCFC-FCE02BB86097}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlightQualityAnalyzer.Tests", "FlightQualityAnalyzer.Tests\FlightQualityAnalyzer.Tests.csproj", "{27979831-312E-4D35-BCFC-FCE02BB86097}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightQualityAnalyzer.IntegrationTests", "FlightQualityAnalyzer.IntegrationTests\FlightQualityAnalyzer.IntegrationTests.csproj", "{194E1FCC-1CDF-431D-A3C0-33F3CD368D9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{27979831-312E-4D35-BCFC-FCE02BB86097}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27979831-312E-4D35-BCFC-FCE02BB86097}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27979831-312E-4D35-BCFC-FCE02BB86097}.Release|Any CPU.Build.0 = Release|Any CPU
+		{194E1FCC-1CDF-431D-A3C0-33F3CD368D9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{194E1FCC-1CDF-431D-A3C0-33F3CD368D9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{194E1FCC-1CDF-431D-A3C0-33F3CD368D9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{194E1FCC-1CDF-431D-A3C0-33F3CD368D9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,6 +5,7 @@ using FlightQualityAnalyzer.Domain.DTOs;
 using FlightQualityAnalyzer.Domain.Entities;
 using FlightQualityAnalyzer.Domain.Interfaces;
 using FlightQualityAnalyzer.Service;
+using FlightQualityAnalyzer.Tests.Helper;
 using Microsoft.Extensions.Options;
 using Moq;
 
@@ -20,10 +21,50 @@ public class FlightTests
         new List<object[]>
         {
             new object[] { new List<Flight> {
-                new() { Id = 1, FlightNumber = "M645", DepartureAirport = "HEL", ArrivalAirport = "DXB", AircraftRegistrationNumber="123", AircraftType="232", ArrivalDatetime= DateTime.Now, DepartureDatetime=DateTime.Now },
-                new() { Id = 2, FlightNumber = "W679", DepartureAirport = "HND", ArrivalAirport = "CDG", AircraftRegistrationNumber="123", AircraftType="232", ArrivalDatetime= DateTime.Now, DepartureDatetime=DateTime.Now },
-                new() { Id = 3, FlightNumber = "D677", DepartureAirport = "LHR", ArrivalAirport = "JFK", AircraftRegistrationNumber="123", AircraftType="232", ArrivalDatetime= DateTime.Now, DepartureDatetime=DateTime.Now },
-                new() { Id = 4, FlightNumber = "U482", DepartureAirport = "HEL", ArrivalAirport = "FRA", AircraftRegistrationNumber="123", AircraftType="232", ArrivalDatetime= DateTime.Now, DepartureDatetime=DateTime.Now },
+                new()
+                {
+                    Id = 1,
+                    FlightNumber = "M645",
+                    DepartureAirport = "HEL",
+                    ArrivalAirport = "DXB",
+                    AircraftRegistrationNumber = "123",
+                    AircraftType = "232",
+                    DepartureDatetime = new DateTime(2024, 1, 1, 10, 0, 0),
+                    ArrivalDatetime = new DateTime(2024, 1, 1, 12, 0, 0)
+                },
+                new()
+                {
+                    Id = 2,
+                    FlightNumber = "W679",
+                    DepartureAirport = "HND",
+                    ArrivalAirport = "CDG",
+                    AircraftRegistrationNumber = "124",
+                    AircraftType = "232",
+                    DepartureDatetime = new DateTime(2024, 1, 2, 15, 30, 0),
+                    ArrivalDatetime = new DateTime(2024, 1, 2, 18, 0, 0)
+                },
+                new()
+                {
+                    Id = 3,
+                    FlightNumber = "D677",
+                    DepartureAirport = "LHR",
+                    ArrivalAirport = "JFK",
+                    AircraftRegistrationNumber = "125",
+                    AircraftType = "232",
+                    DepartureDatetime = new DateTime(2024, 1, 3, 9, 15, 0),
+                    ArrivalDatetime = new DateTime(2024, 1, 3, 11, 45, 0)
+                },
+                new()
+                {
+                    Id = 4,
+                    FlightNumber = "U482",
+                    DepartureAirport = "HEL",
+                    ArrivalAirport = "FRA",
+                    AircraftRegistrationNumber = "126",
+                    AircraftType = "232",
+                    DepartureDatetime = new DateTime(2024, 1, 4, 14, 0, 0),
+                    ArrivalDatetime = new DateTime(2024, 1, 4, 17, 0, 0)
+                },
             }, 4 },
         };
 
@@ -32,7 +73,7 @@ public class FlightTests
         // Set up the mock to return Flight-File-Setting
         var appSettings = new FlightFileSetting
         {
-            FilePath = "fake",
+            FilePath = "DATA\\flights.csv",
             CsvDelimiter = ","
         };
 
@@ -101,19 +142,14 @@ public class FlightTests
     }
 
     /// <summary>
-    /// Tests GetInconsistentFlightChainsAsync, provided flawed flight data so as expeccted there must be inconsistencies
+    /// Tests GetInconsistentFlightChainsAsync, provided flawed flight data (from csv file) so as expeccted there must be inconsistencies
     /// </summary>
     /// <returns></returns>
     [Fact]
     public async Task GetInconsistentFlightChainsAsync_FlightData_WithInconsistencies()
     {
-        // Arrange
-        var flights = new List<Flight> {
-                new() { Id = 1, FlightNumber = "M645", DepartureAirport = "HEL", ArrivalAirport = "DXB", AircraftRegistrationNumber="123", AircraftType="232", ArrivalDatetime= DateTime.Now, DepartureDatetime=DateTime.Now },
-                new() { Id = 2, FlightNumber = "W679", DepartureAirport = "HND", ArrivalAirport = "CDG", AircraftRegistrationNumber="123", AircraftType="232", ArrivalDatetime= DateTime.Now, DepartureDatetime=DateTime.Now },
-                new() { Id = 3, FlightNumber = "D677", DepartureAirport = "LHR", ArrivalAirport = "JFK", AircraftRegistrationNumber="123", AircraftType="232", ArrivalDatetime= DateTime.Now, DepartureDatetime=DateTime.Now },
-                new() { Id = 4, FlightNumber = "U482", DepartureAirport = "HEL", ArrivalAirport = "FRA", AircraftRegistrationNumber="123", AircraftType="232", ArrivalDatetime= DateTime.Now, DepartureDatetime=DateTime.Now },
-            };
+        // arrange
+        var flights = Utilities.LoadTestData(_mockOptions.Object.Value.FilePath); // sample data from csv
         var resultData = Result<IEnumerable<Flight>>.Success(flights);
         _mockFlightRepository.Setup(repo => repo.GetAllAsync()).ReturnsAsync(resultData);
 
@@ -121,7 +157,7 @@ public class FlightTests
         var result = await _flightSerive.GetInconsistentFlightChainsAsync().ConfigureAwait(true);
 
         // Assert
-        Assert.Equal(3, result.Value.Count());
+        Assert.Equal(50, result.Value.Count());
     }
 
     /// <summary>
@@ -133,9 +169,9 @@ public class FlightTests
     {
         // Arrange
         var flights = new List<Flight> {
-                new() { Id = 1, FlightNumber = "M645", DepartureAirport = "HEL", ArrivalAirport = "DXB", AircraftRegistrationNumber="123", AircraftType="232", ArrivalDatetime= DateTime.Now, DepartureDatetime=DateTime.Now },
-                new() { Id = 3, FlightNumber = "D677", DepartureAirport = "DXB", ArrivalAirport = "HEL", AircraftRegistrationNumber="123", AircraftType="232", ArrivalDatetime= DateTime.Now, DepartureDatetime=DateTime.Now },
-                new() { Id = 4, FlightNumber = "U482", DepartureAirport = "HEL", ArrivalAirport = "DXB", AircraftRegistrationNumber="123", AircraftType="232", ArrivalDatetime= DateTime.Now, DepartureDatetime=DateTime.Now },
+                new() { Id = 1, FlightNumber = "M645", DepartureAirport = "HEL", ArrivalAirport = "DXB", AircraftRegistrationNumber="123", AircraftType="232", ArrivalDatetime= new DateTime(2023, 11, 1, 10, 0, 0), DepartureDatetime=new DateTime(2023, 11, 1, 12, 20, 0) },
+                new() { Id = 3, FlightNumber = "D677", DepartureAirport = "DXB", ArrivalAirport = "HEL", AircraftRegistrationNumber="123", AircraftType="232", ArrivalDatetime= new DateTime(2024, 1, 2, 15, 30, 0), DepartureDatetime=new DateTime(2024, 1, 2, 19, 30, 0) },
+                new() { Id = 4, FlightNumber = "U482", DepartureAirport = "HEL", ArrivalAirport = "DXB", AircraftRegistrationNumber="123", AircraftType="232", ArrivalDatetime= new DateTime(2024, 1, 8, 9, 15, 0), DepartureDatetime=new DateTime(2024, 1, 9, 11, 25, 0) },
             };
         var resultData = Result<IEnumerable<Flight>>.Success(flights);
         _mockFlightRepository.Setup(repo => repo.GetAllAsync()).ReturnsAsync(resultData);
