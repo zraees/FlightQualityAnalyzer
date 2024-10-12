@@ -3,6 +3,21 @@
 ## Overview
 The Flight Quality Analyzer is a .NET 8 application (developed using Visual Studio 2022) designed to automate the analysis of flight data quality. It provides RESTful APIs to retrieve flight records from a CSV file and analyze flight chains for inconsistencies. 
 
+### Key Enhancements (based on feedback)
+1. **CSV Parsing**: Utilized the `CsvParser` library for efficient CSV parsing.
+2. **Business Logic Revamped**: I have revised the logic for identifying inconsistencies in flight chains, and I hope it works as expected.
+3. **Integration Testing**: Added a new project, `FlightQualityAnalyzer.IntegrationTests`, and implemented integration tests using `xUnit`, `Microsoft.AspNetCore.Mvc.Testing`, and `FluentAssertions`. FluentAssertions is a .NET library that makes it easier to write clear and expressive assertions in tests.
+4. **Unit Tests**: I see that there’s still room to improve, especially in testing different CSV reading cases. I’ve added CSV files to the unit test `GetInconsistentFlightChainsAsync_FlightData_WithInconsistencies` to make our testing more thorough. This shows how I can use CSV data effectively. I’m open to any suggestions you have, as I’m always eager to learn. I’ve also included different arrival and departure times.
+
+## Room for Enhancement
+There are several areas in the project that can be improved:
+1. Implement JWT authentication and introduce API versioning.
+2. Enhance code coverage by adding additional unit and integration tests. Also, incorporate a wider variety of datasets to test different scenarios.
+3. **Rate Limiting**: Implement rate limiting to protect the API from excessive requests.
+4. **Documentation**: Enhance API documentation using Swagger comments for better developer experience.
+5. **Caching**: Implement caching strategies for frequently accessed data to improve performance.
+6. **Monitoring and Metrics**: Integrate monitoring tools (e.g., Application Insights) to track performance and usage metrics.
+
 ### Some best practices used:
 1. Utilize Onion Architecture to create an application that is loosely coupled, easy to maintain, and highly testable.
 2. Asynchronous data processing using `async` and `await`.  
@@ -16,7 +31,7 @@ The Flight Quality Analyzer is a .NET 8 application (developed using Visual Stud
 ## Technologies used:
 - .NET 8.0
 - C#
-- xUnit for unit testing
+- xUnit for unit testing & integration test
 - Moq for mocking dependencies
 - ASP.NET Core for building the API
   
