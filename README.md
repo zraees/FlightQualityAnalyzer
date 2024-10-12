@@ -5,14 +5,14 @@ The Flight Quality Analyzer is a .NET 8 application (developed using Visual Stud
 
 ### Key Enhancements (based on feedback)
 1. **CSV Parsing**: Utilized the `CsvParser` library for efficient CSV parsing.
-2. **Business Logic Revamped**: Revised the logic to identify inconsistencies in flight chains.
+2. **Business Logic Revamped**: I have revised the logic for identifying inconsistencies in flight chains, and I hope it works as expected.
 3. **Integration Testing**: Added a new project, FlightQualityAnalyzer.IntegrationTests, and implemented integration tests using xUnit, Microsoft.AspNetCore.Mvc.Testing, and FluentAssertions. FluentAssertions is a .NET library that makes it easier to write clear and expressive assertions in tests.
-4. **Unit Tests**: Included CSV files in unit tests for comprehensive testing.
+4. **Unit Tests**: I’ve added CSV files to the unit test `GetInconsistentFlightChainsAsync_FlightData_WithInconsistencies` to make our testing more thorough. This shows how I can use CSV data, but I'm open to any better ideas you might have, as I’m always looking to learn. I've also included different arrival and departure times.
 
 ## Room for Enhancement
 There are several areas in the project that can be improved:
-1. Boost code coverage with more unit and integration tests.
-2. Implement JWT authentication and introduce API versioning.
+1. Implement JWT authentication and introduce API versioning.
+2. Enhance code coverage by adding additional unit and integration tests. Also, incorporate a wider variety of datasets to test different scenarios.
 3. **Rate Limiting**: Implement rate limiting to protect the API from excessive requests.
 4. **Documentation**: Enhance API documentation using Swagger comments for better developer experience.
 5. **Caching**: Implement caching strategies for frequently accessed data to improve performance.
